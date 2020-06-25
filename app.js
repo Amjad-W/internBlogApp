@@ -9,6 +9,7 @@ var contactRouter = require('./routes/contact.js');
 var aboutRouter = require('./routes/about.js');
 var newPostRouter = require('./routes/new');
 var blogRouter = require('./routes/blog');
+var logoutRouter = require('./routes/logout');
 
 var app = express();
 
@@ -23,10 +24,11 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
+app.use('/logout', logoutRouter);
 app.use('/contact', contactRouter);
 app.use('/about', aboutRouter);
-app.use('/newBlog', newPostRouter);
-app.use('/blog/:id', blogRouter);
+app.use('/new', newPostRouter);
+app.use('/blog', blogRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

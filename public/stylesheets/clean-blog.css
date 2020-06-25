@@ -114,12 +114,13 @@ img::-moz-selection {
   text-transform: uppercase;
 }
 
-.dropdown-menu{
+.loginDropdown{
   width:250px !important;
 }
-.dropdown-menu * {
+.loginDropdown * {
   margin-top: 1em;
 }
+
 @media only screen and (min-width: 992px) {
   #mainNav {
     border-bottom: 1px solid transparent;

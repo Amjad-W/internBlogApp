@@ -5,9 +5,29 @@ var Schema = mongoose.Schema;
 var blogSchema = new Schema({
     title: String,
     content: String,
+    user: String,
     createdAt: {type: String, default: Date.now}
 });
 
+var userSchema = new Schema({
+  email: {
+    type: String,
+    required: true,
+    trim: true,
+    unique: true,
+  },
+  user: {
+    type: String,
+    required: true,
+    trim: true,
+  },
+  pass: {
+    type: String,
+    required: true
+  }
+});
+
+User = exports.User = mongoose.model('User',userSchema);
 Blog = exports.Blog = mongoose.model('Blog',blogSchema);
 
 exports.initializeMongo = function() {
@@ -20,13 +40,14 @@ exports.initializeMongo = function() {
     });
 }
 
-var addBlog = function(){
-    var test = new Blog({
-        title: 'Andari',
-        content: 'xdxdxdxd'
+exports.addBlog = async function(newTitle,newContent,postedBy){
+    var newBlog = new Blog({
+        title: newTitle,
+        content: newContent,
+        user: postedBy
     });
-    test.save(function(err){
+    await newBlog.save(function(err){
         if (err) return console.error(err);
-        console.log('Saved ' + test.title);
+        console.log('Saved ' + newBlog.title);
     })
 }
